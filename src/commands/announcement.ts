@@ -46,14 +46,15 @@ class Announcement implements ICommand {
 
   async execute({ interaction }: ICommandProps): Promise<void> {
     const [ channelOption, message ] = interaction.options.data;
-    const { channel } = channelOption;
-
+    
     if(interaction.options.data.length < 1) return interaction.reply({ content: `Como usar: **${this.usage}**` });
+    
+    const channel = channelOption?.channel;
 
     if(!channel) return interaction.reply({ content: "Eu não consegui encontrar esse canal. 😕" });
     if(channel?.type !== "GUILD_TEXT") return interaction.reply({ content: "Desculpe, você precisa mencionar um canal de texto. 😕" });
 
-    if(!message.value) return interaction.reply({ content: "✍️ Desculpe, você precisa escrever algo." });
+    if(!message?.value) return interaction.reply({ content: "✍️ Desculpe, você precisa escrever algo." });
 
     const embed = new MessageEmbed();
 
