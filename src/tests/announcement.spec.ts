@@ -1,4 +1,4 @@
-import { CommandInteraction } from "discord.js";
+import { CommandInteraction, CommandInteractionOption } from "discord.js";
 import Announcement from "../commands/announcement";
 
 const interactionMock = {
@@ -34,7 +34,7 @@ const interactionMock = {
 
 describe('Announcement Command', () => {
   it('Should return a message on how to use', async () => {
-    const data = [] as CommandInteraction[];
+    const data = [] as CommandInteractionOption[];
 
     const mock = {
       ...interactionMock,
