@@ -1,5 +1,5 @@
-import { CommandInteraction, CommandInteractionOption, CommandInteractionResolvedData } from "discord.js";
-import Announcement from "../commands/Announcement";
+import { CommandInteraction } from "discord.js";
+import Announcement from "../commands/announcement";
 
 const interactionMock = {
   "member": {
@@ -34,7 +34,7 @@ const interactionMock = {
 
 describe('Announcement Command', () => {
   it('Should return a message on how to use', async () => {
-    const data = [] as CommandInteractionOption[];
+    const data = [] as CommandInteraction[];
 
     const mock = {
       ...interactionMock,
@@ -52,9 +52,11 @@ describe('Announcement Command', () => {
 
   it('Should return a message asking about the channel', async () => {
     const data = [
+      {},
       {
-        "type": 7,
-        "name": "cardname",
+        "type": 3,
+        "name": "message",
+        "value": ""
       }
     ];
 
@@ -68,8 +70,8 @@ describe('Announcement Command', () => {
     const announcement = new Announcement();
     await announcement.execute({ interaction: mock });
 
-    expect(interactionMock.reply).toHaveBeenCalled();
-    expect(interactionMock.reply).toHaveBeenCalledWith({ content: "Eu não consegui encontrar esse canal. 😕" });
+    expect(mock.reply).toHaveBeenCalled();
+    expect(mock.reply).toHaveBeenCalledWith({ content: "Eu não consegui encontrar esse canal. 😕" });
 
     const dataWithChannel = [
       {
@@ -79,19 +81,24 @@ describe('Announcement Command', () => {
           type: "GUILD_TEXT"
         }
       },
+      {
+        "type": 3,
+        "name": "message",
+        "value": ""
+      }
     ];
 
     const mockWithChannel = {
       ...interactionMock,
       options: {
-        data,
+        data: dataWithChannel,
       }
     } as unknown as CommandInteraction;
 
     await announcement.execute({ interaction: mockWithChannel });
 
-    expect(interactionMock.reply).toHaveBeenCalled();
-    expect(interactionMock.reply).not.toHaveBeenCalledWith({ content: "Eu não consegui encontrar esse canal. 😕" });
+    expect(mockWithChannel.reply).toHaveBeenCalled();
+    expect(mockWithChannel.reply).not.toHaveBeenLastCalledWith({ content: "Eu não consegui encontrar esse canal. 😕" });
   });
 
   it('Should return a error message if the channel is not a text channel', async () => {
