@@ -64,8 +64,8 @@ class Ban implements ICommand {
 
     const clientGuildMember = interaction.guild?.me;
 
-    if(!interaction.memberPermissions?.has('BAN_MEMBERS', true)) return interaction.reply({ content: "🚨 Desculpe, você não tem permissão para expulsar esse membro." });
-    if(!clientGuildMember?.permissions.has('BAN_MEMBERS', true)) return interaction.reply({ content: "🚨 Desculpe, eu não tenho permissão para expulsar esse membro." });
+    if(!interaction.memberPermissions?.has('BAN_MEMBERS', true)) return interaction.reply({ content: "🚨 Desculpe, você não tem permissão para banir esse membro." });
+    if(!clientGuildMember?.permissions.has('BAN_MEMBERS', true)) return interaction.reply({ content: "🚨 Desculpe, eu não tenho permissão para banir esse membro." });
 
     try {
       await interaction.guild?.members.ban(member.user,
