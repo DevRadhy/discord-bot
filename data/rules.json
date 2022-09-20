@@ -1,0 +1,49 @@
+{
+  "prefix": "📌",
+  "rules": [
+    {
+      "name": "Linguagem",
+      "description": "Linguajar severamente vulgar, desrespeitoso, agressivo ou com o intuito de causar transtornos ou perturbar a ordem não é permitido e será sujeito a ban, sem aviso prévio."
+    },
+    {
+      "name": "Preconceito",
+      "description": "Machismo, racismo, sexismo, homofobia, trolagem, bullying e qualquer forma de ofensa NÃO será tolerado e será sujeito a ban, sem aviso prévio."
+    },
+    {
+      "name": "Conteúdos",
+      "description": "NÃO é permitido envio de spam para membros deste servidor, compartilhamento de links maliciosos ou de pirataria, e que contenham imagens inadequadas, pornografia, racismo e relacionados. Também NÃO é permitido distribuir qualquer produto, software e cursos pagos de forma gratuita ou mais barato (sem autorização do dono). Será sujeito a ban, sem aviso prévio."
+    },
+    {
+      "name": "Discussão",
+      "description": "NÃO deve haver discussão sobre formas de atividades online maliciosas neste servidor. Discussão política é permitida, no entanto, mantenha-a de forma amigável e nos canais corretos. Se mudar para uma discussão, você será solicitado a parar ou levar a conversa ao DM e sujeito a uma advertência da staff que poderá resultar em ban."
+    },
+    {
+      "name": "Divulgação",
+      "description": "Caso deseje divulgar alguma comunidade é necessário conversar com a Staff primeiro e a mesma fará a divulgação se for coerente. A autopromoção é permitida, mas pedimos que você poste seus links apenas uma vez por dia e no canal de #divulgações. Não exagere!"
+    },
+    {
+      "name": "Dados Pessoais",
+      "description": "É proibido compartilhar imagens e mensagens que contenham informações pessoais de outra pessoa como telefone, fotos, localização, nome completo, idade, entre outros dados sem autorização da mesma. Sujeito a ban sem aviso prévio."
+    },
+    {
+      "name": "Salas",
+      "description": "Utilize corretamente cada sala do servidor para o assunto a qual ela pertence."
+    },
+    {
+      "name": "Discord",
+      "description": "Caso haja violação dos termos e/ou diretrizes do discord, também será sujeito a ban.\nLinks: https://discordapp.com/guidelines | https://discordapp.com/terms"
+    },
+    {
+      "name": "Tenha Bom Senso",
+      "description": "Bom senso em geral, independente da situação."
+    },
+    {
+      "name": "Reclamações/Denúncias",
+      "description": "Qualquer dúvida, reclamação, denúncia, etc. entre em contato com a Staff."
+    },
+    {
+      "name": "Divirta-se",
+      "description": "Mais importante: Divirta-se e aproveite sua estadia!"
+    }
+  ]
+}
