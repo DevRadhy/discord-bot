@@ -3,17 +3,13 @@ import Client from "./lib/Client";
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 
-import * as functions from './commands';
-import { ICommand } from "./typings/Commands";
-
 import InteractionEvent from "./events/interaction";
 
-export const commands: ICommand[] = Object.values(functions).map((command) => new command());
+const { client, commands } = Client;
+
 const interactions = commands.map((command) => command.interaction);
 
 const rest = new REST({ version: '9' }).setToken(String(process.env.SECRET_TOKEN));
-
-const { client } = Client;
 
 (async () => {
   try {
