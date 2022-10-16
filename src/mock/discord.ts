@@ -51,7 +51,6 @@ export class DiscordMock {
         avatar: "a_d5efa99b3eeaa7dd43acca82f5692432",
         discriminator: "1337",
         bot: false,
-        avatarURL: jest.fn(),
       },
     ]);
   }
