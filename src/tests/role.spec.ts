@@ -5,16 +5,10 @@ import { DiscordMock } from "../mock/discord";
 const discordMock = new DiscordMock();
 const interactionMock = discordMock.interaction;
 
-console.log(discordMock.member.roles)
-
 describe('Role Command', () => {
   it('Should return a message on how to use', async () => {
-    const mock = {
-      ...interactionMock,
-    } as unknown as CommandInteraction;
-
     const role = new Role();
-    await role.execute({ interaction: mock });
+    await role.execute({ interaction: interactionMock });
 
     expect(interactionMock.reply).toHaveBeenCalled();
     expect(interactionMock.reply).toHaveBeenCalledWith({ content: `Como usar: **${role.usage}**` });
@@ -79,9 +73,6 @@ describe('Role Command', () => {
 
     const mock = {
       ...interactionMock,
-      memberPermissions: {
-        has: jest.fn()
-      },
       options: {
         ...interactionMock.options,
         data,
@@ -119,11 +110,7 @@ describe('Role Command', () => {
       options: {
         ...interactionMock.options,
         data,
-        getMember: jest.fn().mockReturnValue({
-          roles: {
-            add: jest.fn()
-          }
-        }),
+        getMember: jest.fn().mockReturnValue(discordMock.member),
         getRole: jest.fn().mockReturnValue(discordMock.role),
         getSubcommand: jest.fn().mockReturnValue("add"),
       }
@@ -158,11 +145,7 @@ describe('Role Command', () => {
       options: {
         ...interactionMock.options,
         data,
-        getMember: jest.fn().mockReturnValue({
-          roles: {
-            remove: jest.fn()
-          }
-        }),
+        getMember: jest.fn().mockReturnValue(discordMock.member),
         getRole: jest.fn().mockReturnValue(discordMock.role),
         getSubcommand: jest.fn().mockReturnValue("remove"),
       }
@@ -197,9 +180,9 @@ describe('Role Command', () => {
       options: {
         ...interactionMock.options,
         data,
-        getMember: jest.fn().mockReturnValue(discordMock.member),
+        getMember: jest.fn().mockReturnValue({ ...discordMock.member, roles: null }), // member does not have roles methods
         getRole: jest.fn().mockReturnValue(discordMock.role),
-        getSubcommand: jest.fn().mockReturnValue("add"), // member does not have roles add method
+        getSubcommand: jest.fn().mockReturnValue("add"),
       }
     } as unknown as CommandInteraction;
 
