@@ -1,4 +1,3 @@
-import { CommandInteraction } from "discord.js";
 import Help from "../commands/help";
 import { DiscordMock } from "../mock/discord";
 
@@ -9,16 +8,9 @@ jest.mock("../lib/Client")
 
 describe("Help Command", () => {
   it("Should be able to send a message with the commands", async () => {
-    const mock = {
-      ...interactionMock,
-      user: {
-        avatarURL: jest.fn()
-      }
-    } as unknown as CommandInteraction;
-
     const help = new Help();
-    await help.execute({ interaction: mock });
+    await help.execute({ interaction: interactionMock });
 
-    expect(mock.reply).toBeCalled();
+    expect(interactionMock.reply).toBeCalled();
   });
 });
