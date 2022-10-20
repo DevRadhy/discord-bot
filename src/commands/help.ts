@@ -1,5 +1,5 @@
 import { MessageEmbed } from "discord.js";
-import { commands } from "..";
+import Client from "../lib/Client";
 import { ICommand, ICommandProps } from "../typings/Commands";
 import { ApplicationCommand } from "../typings/interaction";
 import { ApplicationType } from "../typings/interaction/enums";
@@ -20,7 +20,7 @@ class Help implements ICommand {
   }
 
   async execute({ interaction }: ICommandProps): Promise<void> {
-    const commandsFields = commands.map(({ interaction }) => ({ name: interaction.name, value: interaction.description, inline: true }));
+    const commandsFields = Client.commands.map(({ interaction }) => ({ name: interaction.name, value: interaction.description, inline: true }));
 
     const embed = new MessageEmbed();
 

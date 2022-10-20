@@ -36,7 +36,7 @@ class Roles implements ICommand {
               description_localizations: {
                 "pt-BR": "Membro que irá receber o cargo."
               },
-              type: InteractionOptionType.MENTIONABLE,
+              type: InteractionOptionType.USER,
               required: true,
             },
             {
@@ -95,11 +95,12 @@ class Roles implements ICommand {
   }
 
   async execute({ interaction }: ICommandProps): Promise<void> {
-    const [ action ] = interaction.options.data;
+    const options = interaction.options;
 
-    if(!action.options) return interaction.reply({ content: `Como usar: **${this.usage}**` });
+    if(options.data.length < 1) return interaction.reply({ content: `Como usar: **${this.usage}**` });
 
-    const [ { member }, { role } ] = action.options;
+    const member = options.getMember("member");
+    const role = options.getRole("role");
 
     if(!member) return interaction.reply({ content: "Mencione um usuário válido 🤷‍♀️." });
     if(!role) return interaction.reply({ content: "Mencione um cargo válido 🤷‍♀️." });
@@ -108,7 +109,7 @@ class Roles implements ICommand {
       return interaction.reply({ content: "🚨 Desculpe, você não tem permissão para usar esse comando." });
     
     try {
-      switch(action.name) {
+      switch(options.getSubcommand()) {
       case "add": 
         await this.add(member as GuildMember, role as Role);
   
